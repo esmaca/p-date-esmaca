@@ -119,12 +119,92 @@ public class Date {
 		return (isSameYear(miFecha) && isSameMonth(miFecha) && isSameDay(miFecha));
 	}
 	
+	public String season() {
+		String estacion = new String();
+		
+		
+		if (this.month>=3 && this.month<=5)
+			estacion =  "Primavera";
+		if (this.month>=6 && this.month<=8)
+			estacion = "Verano";
+		if (this.month>=9 && this.month<=11)
+			estacion = "Otoño";
+		if (this.month==12 && this.month<=2)
+			estacion = "Invierno";
+		
+		return estacion;
+	}
+	
+	public int numSameDateWHILE() throws DateException {
+		int cont=0;
+		
+		Date randomDate = new Date();
+		randomDate.setYear(this.year);
+		
+		while(isSame(randomDate)) {
+			randomDate.setDay((int)((Math.random()*31)+1));
+			randomDate.setMonth((int)((Math.random()*12)+1));
+			
+			cont++;
+		}
+		
+		return cont;
+	}
+	
+	public int numSameDateDOWHILE() throws DateException {
+		int cont=0;
+		
+		Date randomDate = new Date();
+		randomDate.setYear(this.year);
+		
+		do {
+			randomDate.setDay((int)((Math.random()*31)+1));
+			randomDate.setMonth((int)((Math.random()*12)+1));
+			
+			cont++;
+		} while(isSame(randomDate));
+		
+		return cont;
+	}
+	
+	public String monthsLeft() {
+		String restantes = new String();
+		
+		if(this.month<2)
+			restantes.concat("Febrero\t");
+		if(this.month<3)
+			restantes.concat("Marzo\t");
+		if(this.month<4)
+			restantes.concat("Abril\t");
+		if(this.month<5)
+			restantes.concat("Mayo\t");
+		if(this.month<6)
+			restantes.concat("Junio\t");
+		if(this.month<7)
+			restantes.concat("Julio\t");
+		if(this.month<8)
+			restantes.concat("Agosto\t");
+		if(this.month<9)
+			restantes.concat("Septiembre\t");
+		if(this.month<10)
+			restantes.concat("Octubre\t");
+		if(this.month<11)
+			restantes.concat("Noviembre\t");
+		if(this.month<12)
+			restantes.concat("Diciembre\t");
+		
+		return restantes;
+	}
+	
 	
 	
 	@Override
 	public String toString() {
 		return "Date [day=" + day + ", month=" + month + ", year=" + year + "]";
 	}
+	
+	
+	
 
 
 }
