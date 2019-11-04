@@ -23,7 +23,8 @@ public class PDatePrincipal {
 		//System.out.println(miFecha2);
 		
 		//System.out.println("isSame="+miFecha.isSame(miFecha2));
-
+		
+		
 	}
 
 }

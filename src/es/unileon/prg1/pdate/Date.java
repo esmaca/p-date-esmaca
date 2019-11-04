@@ -203,7 +203,49 @@ public class Date {
 		return "Date [day=" + day + ", month=" + month + ", year=" + year + "]";
 	}
 	
+	public String daysLeft() {
+		String restantes = new String();
+		//String aux = new String();
+		
+		//***dias 2-28
+		for (int i=this.day+1; i<=28; i++) {
+			//aux = String.valueOf(i);
+			restantes.concat(String.valueOf(i)+"\t");
+		}
+		
+		//***dia 29
+		if (this.day<29 && this.month!=2)
+			restantes.concat("29\t");
+		//***dia 30
+		if (this.day<30 && this.month!=2)
+			restantes.concat("30\t");
+		//***dia 31
+		if (this.day<31 && this.month!=2 && this.month!=4 && this.month!=6 && this.month!=9 && this.month!=11)
+			restantes.concat("31\t");
+		
+		
+		return restantes;
+	}
 	
+	public String monthsWithSameNumDays() throws DateException {
+		String meses = new String();
+		
+		switch(this.month) {
+			case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+				meses ="Enero, Marzo, Mayo, Julio, Agosto, Octubre y Diciembre";
+				break;
+			case 2:
+				meses = "No hay otros meses con el mismo numero de dias";
+				break;
+			case 4: case 6: case 9: case 11:
+				meses = "Abril, Junio, Septiembrey Noviembre";
+				break;
+			default : 
+				throw new DateException("Fecha fuera del intervalo");
+		}
+		
+		return meses;
+	}
 	
 
 
