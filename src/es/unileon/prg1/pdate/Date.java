@@ -168,34 +168,37 @@ public class Date {
 	}
 	
 	public String monthsLeft() {
-		String restantes = new String();
-		
+		String restantes = "";
+
 		if(this.month<2)
-			restantes.concat("Febrero\t");
+			restantes=restantes.concat("Febrero\t");
 		if(this.month<3)
-			restantes.concat("Marzo\t");
+			restantes=restantes.concat("Marzo\t");
 		if(this.month<4)
-			restantes.concat("Abril\t");
+			restantes=restantes.concat("Abril\t");
 		if(this.month<5)
-			restantes.concat("Mayo\t");
+			restantes=restantes.concat("Mayo\t");
 		if(this.month<6)
-			restantes.concat("Junio\t");
+			restantes=restantes.concat("Junio\t");
 		if(this.month<7)
-			restantes.concat("Julio\t");
+			restantes=restantes.concat("Julio\t");
 		if(this.month<8)
-			restantes.concat("Agosto\t");
+			restantes=restantes.concat("Agosto\t");
 		if(this.month<9)
-			restantes.concat("Septiembre\t");
+			restantes=restantes.concat("Septiembre\t");
 		if(this.month<10)
-			restantes.concat("Octubre\t");
+			restantes=restantes.concat("Octubre\t");
 		if(this.month<11)
-			restantes.concat("Noviembre\t");
-		if(this.month<12)
-			restantes.concat("Diciembre\t");
-		
+			restantes=restantes.concat("Noviembre\t");
+		if(this.month<12) 
+			restantes=restantes.concat("Diciembre\t");
+
 		return restantes;
 	}
 	
+	public int monthsTillEnd () {
+		return 12-this.month;
+	}
 	
 	
 	@Override
@@ -210,18 +213,18 @@ public class Date {
 		//***dias 2-28
 		for (int i=this.day+1; i<=28; i++) {
 			//aux = String.valueOf(i);
-			restantes.concat(String.valueOf(i)+"\t");
+			restantes=restantes.concat(String.valueOf(i)+"\t");
 		}
 		
 		//***dia 29
 		if (this.day<29 && this.month!=2)
-			restantes.concat("29\t");
+			restantes=restantes.concat("29\t");
 		//***dia 30
 		if (this.day<30 && this.month!=2)
-			restantes.concat("30\t");
+			restantes=restantes.concat("30\t");
 		//***dia 31
 		if (this.day<31 && this.month!=2 && this.month!=4 && this.month!=6 && this.month!=9 && this.month!=11)
-			restantes.concat("31\t");
+			restantes=restantes.concat("31\t");
 		
 		
 		return restantes;
@@ -238,13 +241,47 @@ public class Date {
 				meses = "No hay otros meses con el mismo numero de dias";
 				break;
 			case 4: case 6: case 9: case 11:
-				meses = "Abril, Junio, Septiembrey Noviembre";
+				meses = "Abril, Junio, Septiembre y Noviembre";
 				break;
 			default : 
 				throw new DateException("Fecha fuera del intervalo");
 		}
 		
 		return meses;
+	}
+	
+	public int totalDays () throws DateException {
+		int dias;
+		
+		switch(this.month) {
+			case 1: dias = this.day;
+				break;
+			case 2: dias = 31+this.day;
+				break;
+			case 3: dias = 31+28+this.day;
+				break;
+			case 4: dias = 31+28+31+this.day;
+				break;
+			case 5: dias = 31+28+31+30+this.day;
+				break;
+			case 6: dias = 31+28+31+30+31+this.day;
+				break;
+			case 7: dias = 31+28+31+30+31+30+this.day;
+				break;
+			case 8: dias = 31+28+31+30+31+30+31+this.day;
+				break;
+			case 9: dias = 31+28+31+30+31+30+31+31+this.day;
+				break;
+			case 10: dias = 31+28+31+30+31+30+31+31+30+this.day;
+				break;
+			case 11: dias = 31+28+31+30+31+30+31+31+30+31+this.day;
+				break;
+			case 12: dias = 31+28+31+30+31+30+31+31+30+31+30+this.day;
+				break;
+			default: throw new DateException("Fecha fuera del intervalo");
+		}
+		
+		return dias;
 	}
 	
 
